@@ -155,12 +155,12 @@ Development and evaluation will use simulated operational data and sample docume
 
 ## Team Nexus
 
-| Index Number | Member | Primary Responsibilities |
-|---|---|---|
-| 244005R | Abeywickrama L.H.K | Warehouse and inventory; supervisor application; retail orders, returns, and complaints; AI-assisted analytics |
-| 244014T | Amarasinghe W.M.A.G.E.V | Agent mobile application; offline delivery support; delivery and proof of delivery; notifications |
-| 244031R | Bandara H.M.A.S.C | Manufacturer operations; ERP integration; shipment, product, and agency management; authentication |
-| 244177T | Rathnasiri S.M.D | Dispatch and fleet management; route optimization; maps; real-time monitoring |
+ Member | Primary Responsibilities |
+|---|---|
+Hasuni | Warehouse and inventory; supervisor application; retail orders, returns, and complaints; AI-assisted analytics |
+Eranjana| Agent mobile application; offline delivery support; delivery and proof of delivery; notifications |
+Sajan | Manufacturer operations; ERP integration; shipment, product, and agency management; authentication |
+Madusha | Dispatch and fleet management; route optimization; maps; real-time monitoring |
 
 **Academic Supervisor:** Ms. Nipuni Premadasa
 
