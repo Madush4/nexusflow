@@ -1,80 +1,86 @@
 .sidebar {
-  width: 203px;
+  width: 12.6875rem;
   min-height: 100vh;
-  flex: 0 0 203px;
+  flex: 0 0 12.6875rem;
   display: flex;
   flex-direction: column;
-  padding: 16px 10px;
+  padding: 1rem 0.625rem;
   color: #dce5f3;
   background: #0f1e36;
 }
 
 .brand {
-  min-height: 50px;
+  min-height: 3.125rem;
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 0 0 14px;
+  gap: 0.5625rem;
+  padding: 0 0 0.875rem;
   border-bottom: 1px solid #293953;
   color: inherit;
   text-decoration: none;
 }
 
 .brand-mark {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   display: grid;
   place-items: center;
-  border-radius: 9px;
+  border-radius: 0.5625rem;
   color: #fff;
   background: #3564f4;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 700;
 }
 
 .brand-copy {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0.0625rem;
 }
 
 .brand-copy strong {
   color: #fff;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.1;
 }
 
 .brand-copy span {
   color: #9ba9bf;
-  font-size: 8px;
+  font-size: 0.5rem;
 }
 
 .primary-navigation {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding-top: 15px;
+  gap: 0.9375rem;
+  padding-top: 0.9375rem;
 }
 
 .nav-group h2 {
-  margin: 0 0 4px;
+  margin: 0 0 0.25rem;
   color: #8e9db4;
-  font-size: 8px;
+  font-size: 0.5rem;
   font-weight: 700;
   line-height: 1.5;
 }
 
 .nav-link {
-  min-height: 29px;
+  min-height: 1.8125rem;
   display: flex;
   align-items: center;
-  gap: 9px;
-  margin: 1px 0;
-  padding: 0 9px;
-  border-radius: 8px;
+  gap: 0.5625rem;
+  margin: 0.0625rem 0;
+  padding: 0 0.5625rem;
+  border-radius: 0.5rem;
   color: #c0cada;
-  font-size: 10px;
+  font-size: 0.625rem;
   text-decoration: none;
+  border: 0;
+  width: 100%;
+  background: transparent;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 .nav-link:hover,
@@ -84,9 +90,9 @@
 }
 
 .nav-icon {
-  width: 16px;
+  width: 1rem;
   color: #9dadc3;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1;
   text-align: center;
 }
@@ -94,55 +100,55 @@
 .help-card {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 0.4375rem;
   margin-top: auto;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 0.75rem;
+  border-radius: 0.625rem;
   background: #1a2d4b;
 }
 
 .help-card strong {
   color: #fff;
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 
 .help-card p {
   margin: 0;
   color: #a7b4c8;
-  font-size: 8px;
+  font-size: 0.5rem;
 }
 
 .help-card button {
-  min-height: 23px;
+  min-height: 1.4375rem;
   border: 0;
-  border-radius: 6px;
+  border-radius: 0.375rem;
   color: #dbe5f4;
   background: #2b4266;
   font: inherit;
-  font-size: 8px;
+  font-size: 0.5rem;
   text-align: left;
-  padding: 0 10px;
+  padding: 0 0.625rem;
   cursor: pointer;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 47.5rem) {
   .sidebar {
     width: 100%;
     min-height: 0;
     flex: 0 0 auto;
-    padding: 12px 14px 8px;
+    padding: 0.75rem 0.875rem 0.5rem;
   }
 
   .brand {
-    min-height: 42px;
-    padding: 0 0 10px;
+    min-height: 2.625rem;
+    padding: 0 0 0.625rem;
   }
 
   .primary-navigation {
     flex-direction: row;
     gap: 0;
     overflow-x: auto;
-    padding: 8px 0 2px;
+    padding: 0.5rem 0 0.125rem;
     scrollbar-width: thin;
   }
 
@@ -150,8 +156,8 @@
     display: flex;
     flex: 0 0 auto;
     align-items: center;
-    gap: 3px;
-    margin-right: 12px;
+    gap: 0.1875rem;
+    margin-right: 0.75rem;
   }
 
   .nav-group h2 {
@@ -159,8 +165,8 @@
   }
 
   .nav-link {
-    min-height: 34px;
-    padding: 0 9px;
+    min-height: 2.125rem;
+    padding: 0 0.5625rem;
     white-space: nowrap;
   }
 

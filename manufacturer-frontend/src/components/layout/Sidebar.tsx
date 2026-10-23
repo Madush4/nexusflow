@@ -1,34 +1,64 @@
 import './Sidebar.css'
 
+export type WorkspacePage =
+  | 'dashboard'
+  | 'sap'
+  | 'sap-detail'
+  | 'orders'
+  | 'stocks'
+  | 'reports'
+  | 'adjustment'
+  | 'stock-movements'
+  | 'production-entry'
+  | 'shipment-schedules'
+  | 'shipment-create'
+  | 'shipment-review'
+  | 'shipment-saved'
+  | 'shipment-detail'
+  | 'agency'
+  | 'notifications'
+  | 'notification-preferences'
+  | 'reports-orders'
+  | 'reports-handover'
+  | 'account-preferences'
+
+interface SidebarProps {
+  activePage: WorkspacePage
+  onNavigate: (page: WorkspacePage) => void
+}
+
 const navGroups = [
   {
     label: 'MAIN',
     items: [
-      { label: 'Dashboard', icon: '▦', active: true },
-      { label: 'SAP Requirements', icon: '⬡' },
-      { label: 'Upcoming Orders', icon: '▥' },
-      { label: 'Manufacturing Stocks', icon: '▣' },
+      { label: 'Dashboard', icon: '▦', page: 'dashboard' as const },
+      { label: 'SAP Requirements', icon: '⬡', page: 'sap' as const },
+      { label: 'Upcoming Orders', icon: '▥', page: 'orders' as const },
+      { label: 'Manufacturing Stocks', icon: '▣', page: 'stocks' as const },
     ],
   },
   {
     label: 'OPERATIONS',
     items: [
-      { label: 'Shipment Schedules', icon: '▤' },
-      { label: 'Agency Management', icon: '⌂' },
-      { label: 'Warehouse Handover', icon: '▥' },
+      { label: 'Shipment Schedules', icon: '▤', page: 'shipment-schedules' as const },
+      { label: 'Agency Management', icon: '⌂', page: 'agency' as const },
+      { label: 'Warehouse Handover', icon: '▥', page: 'dashboard' as const },
     ],
   },
   {
     label: 'ANALYTICS',
-    items: [{ label: 'Reports & History', icon: '▥' }],
+    items: [{ label: 'Reports & History', icon: '▥', page: 'reports' as const }],
   },
   {
     label: 'SETTINGS',
-    items: [{ label: 'Settings', icon: '⬡' }],
+    items: [
+      { label: 'Settings', icon: '⬡', page: 'account-preferences' as const },
+      { label: 'Notifications', icon: '♢', page: 'notifications' as const },
+    ],
   },
 ]
 
-function Sidebar() {
+function Sidebar({ activePage, onNavigate }: SidebarProps) {
   return (
     <aside className="sidebar">
       <a className="brand" href="#" aria-label="FreightFlow dashboard">
@@ -46,17 +76,18 @@ function Sidebar() {
           <div className="nav-group" key={group.label}>
             <h2>{group.label}</h2>
             {group.items.map((item) => (
-              <a
-                className={`nav-link${item.active ? ' is-active' : ''}`}
-                href="#"
-                aria-current={item.active ? 'page' : undefined}
+              <button
+                className={`nav-link${activePage === item.page || (activePage === 'sap-detail' && item.page === 'sap') || (activePage === 'adjustment' && item.page === 'stocks') || (['stock-movements', 'production-entry'].includes(activePage) && item.page === 'stocks') || (['shipment-create', 'shipment-review', 'shipment-saved', 'shipment-detail'].includes(activePage) && item.page === 'shipment-schedules') || (activePage === 'notification-preferences' && item.page === 'notifications') || (['reports-orders', 'reports-handover'].includes(activePage) && item.page === 'reports') || (activePage === 'account-preferences' && item.page === 'account-preferences') ? ' is-active' : ''}`}
+                type="button"
+                onClick={() => onNavigate(item.page)}
+                aria-current={activePage === item.page ? 'page' : undefined}
                 key={item.label}
               >
                 <span className="nav-icon" aria-hidden="true">
                   {item.icon}
                 </span>
                 <span>{item.label}</span>
-              </a>
+              </button>
             ))}
           </div>
         ))}
