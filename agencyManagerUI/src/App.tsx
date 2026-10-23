@@ -1,13 +1,10 @@
-
-
+import SignInPage from "./pages/signInPage.tsx";
 function App() {
-  
-
   return (
-    <div>
-      
+    <div className="">
+      <SignInPage />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
