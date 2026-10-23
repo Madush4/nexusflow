@@ -1,0 +1,170 @@
+.sidebar {
+  width: 203px;
+  min-height: 100vh;
+  flex: 0 0 203px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 10px;
+  color: #dce5f3;
+  background: #0f1e36;
+}
+
+.brand {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 0 14px;
+  border-bottom: 1px solid #293953;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  color: #fff;
+  background: #3564f4;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.brand-copy strong {
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+.brand-copy span {
+  color: #9ba9bf;
+  font-size: 8px;
+}
+
+.primary-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 15px;
+}
+
+.nav-group h2 {
+  margin: 0 0 4px;
+  color: #8e9db4;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.nav-link {
+  min-height: 29px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 1px 0;
+  padding: 0 9px;
+  border-radius: 8px;
+  color: #c0cada;
+  font-size: 10px;
+  text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+  color: #fff;
+  background: #1a2d4b;
+}
+
+.nav-icon {
+  width: 16px;
+  color: #9dadc3;
+  font-size: 15px;
+  line-height: 1;
+  text-align: center;
+}
+
+.help-card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: auto;
+  padding: 12px;
+  border-radius: 10px;
+  background: #1a2d4b;
+}
+
+.help-card strong {
+  color: #fff;
+  font-size: 10px;
+}
+
+.help-card p {
+  margin: 0;
+  color: #a7b4c8;
+  font-size: 8px;
+}
+
+.help-card button {
+  min-height: 23px;
+  border: 0;
+  border-radius: 6px;
+  color: #dbe5f4;
+  background: #2b4266;
+  font: inherit;
+  font-size: 8px;
+  text-align: left;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .sidebar {
+    width: 100%;
+    min-height: 0;
+    flex: 0 0 auto;
+    padding: 12px 14px 8px;
+  }
+
+  .brand {
+    min-height: 42px;
+    padding: 0 0 10px;
+  }
+
+  .primary-navigation {
+    flex-direction: row;
+    gap: 0;
+    overflow-x: auto;
+    padding: 8px 0 2px;
+    scrollbar-width: thin;
+  }
+
+  .nav-group {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 3px;
+    margin-right: 12px;
+  }
+
+  .nav-group h2 {
+    display: none;
+  }
+
+  .nav-link {
+    min-height: 34px;
+    padding: 0 9px;
+    white-space: nowrap;
+  }
+
+  .help-card {
+    display: none;
+  }
+}
