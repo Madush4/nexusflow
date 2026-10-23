@@ -5,6 +5,13 @@ import type { WorkspacePage } from '../components/layout/Sidebar'
 interface AdminScreensProps {
   page: WorkspacePage
   onNavigate: (page: WorkspacePage) => void
+  selectedScheduleId?: string
+  scheduleDraft?: {
+    productId: string
+    pickupDate: string
+    quantity: string
+    notes: string
+  }
 }
 
 const alerts = [
@@ -91,7 +98,6 @@ function Notifications({ onNavigate }: AdminScreensProps) {
 
   return (
     <main className="dashboard-content screen-content">
-      <h2 className="screen-page-title">Notifications</h2>
       <div className="alert-category-tabs" role="tablist" aria-label="Notification categories">
         {categoryOptions.map((option) => {
           const count = option === 'All alerts' ? alerts.length : option === 'Requirements' ? 1 : option === 'Low stock' ? 3 : 0
@@ -175,7 +181,6 @@ function NotificationPreferences({ onNavigate }: AdminScreensProps) {
   const toggle = (index: number) => setInApp((current) => current.map((value, itemIndex) => itemIndex === index ? !value : value))
   return (
     <main className="dashboard-content screen-content">
-      <h2 className="screen-page-title">Notification preferences</h2>
       <Panel title="Alert delivery preferences">
         <span className="draft-badge">Draft values</span>
         <div className="preferences-table">
@@ -211,7 +216,6 @@ function ReportsNavigation({ page, onNavigate }: AdminScreensProps) {
 function OrdersReport({ page, onNavigate }: AdminScreensProps) {
   return (
     <main className="dashboard-content screen-content">
-      <h2 className="screen-page-title">Reports & History — orders</h2>
       <ReportsNavigation page={page} onNavigate={onNavigate} />
       <Panel title="Order report filters">
         <div className="report-filter-grid">
@@ -238,7 +242,6 @@ function OrdersReport({ page, onNavigate }: AdminScreensProps) {
 function HandoverReport({ page, onNavigate }: AdminScreensProps) {
   return (
     <main className="dashboard-content screen-content">
-      <h2 className="screen-page-title">Reports & History — handover</h2>
       <ReportsNavigation page={page} onNavigate={onNavigate} />
       <Panel title="Handover report filters">
         <div className="report-filter-grid">
@@ -262,6 +265,49 @@ function HandoverReport({ page, onNavigate }: AdminScreensProps) {
   )
 }
 
+function WarehouseHandover({ onNavigate, selectedScheduleId = 'SCH-2051', scheduleDraft }: AdminScreensProps) {
+  const productName = scheduleDraft?.productId === 'MC-BIS-004'
+    ? 'Nice · MC-BIS-004 · 100g'
+    : 'Cream Cracker · MC-BIS-001 · 200g'
+  const requiredQuantity = scheduleDraft?.quantity || '800'
+  const pickupDate = scheduleDraft?.pickupDate
+    ? new Date(`${scheduleDraft.pickupDate}T00:00:00`).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+    : '23 Oct 2026'
+  return (
+    <main className="dashboard-content screen-content">
+      <div className="detail-layout handover-layout">
+        <div className="detail-main">
+          <Panel title="Manufacturer handover records">
+            <div className="empty-state handover-empty">
+              <strong>No verified handover records</strong>
+              <p>No saved manufacturer-side handover records have been supplied. Start a record using the existing schedule as read-only context.</p>
+            </div>
+            <div className="notice-box"><strong>Data confirmation</strong><p>Handover record fields and schedule relationships require ERP confirmation.</p></div>
+          </Panel>
+          <Panel title="Manufacturer-side scope">
+            <p className="body-copy handover-scope">Record actual handed-over quantity only. This view does not manage warehouse inventory, receiving or stock acceptance.</p>
+            <p className="footnote">A shipment schedule is context, not evidence that a handover has occurred.</p>
+          </Panel>
+        </div>
+        <Panel title="Schedule context · Read only">
+          <dl className="detail-rows">
+            <div className="detail-row"><dt>Schedule</dt><dd>{selectedScheduleId}</dd></div>
+            <div className="detail-row"><dt>Product</dt><dd>{productName}</dd></div>
+            <div className="detail-row"><dt>Required quantity</dt><dd>{Number(requiredQuantity).toLocaleString('en-US')} units</dd></div>
+            <div className="detail-row"><dt>Planned next pickup date</dt><dd>{pickupDate}</dd></div>
+          </dl>
+          <p className="footnote">Context from the existing manufacturer schedule, not a saved handover record.</p>
+        </Panel>
+      </div>
+      <div className="screen-actions">
+        <button className="button" type="button" onClick={() => onNavigate('shipment-schedules')}>Back to shipment schedules</button>
+        <button className="button button-primary" type="button" onClick={() => onNavigate('reports-handover')}>Record warehouse handover</button>
+      </div>
+      <ScreenFooter note="Manufacturer-side review only" />
+    </main>
+  )
+}
+
 function AccountPreferences({ onNavigate }: AdminScreensProps) {
   const [language, setLanguage] = useState('English')
   const [timeZone, setTimeZone] = useState('SLST · UTC+05:30')
@@ -270,7 +316,6 @@ function AccountPreferences({ onNavigate }: AdminScreensProps) {
   const [message, setMessage] = useState('')
   return (
     <main className="dashboard-content screen-content">
-      <h2 className="screen-page-title">Account preferences</h2>
       <div className="detail-layout account-layout">
         <div className="detail-main">
           <Panel title="Interface preferences">
@@ -309,6 +354,7 @@ function AdminScreens({ page, onNavigate }: AdminScreensProps) {
   switch (page) {
     case 'notifications': return <Notifications page={page} onNavigate={onNavigate} />
     case 'notification-preferences': return <NotificationPreferences page={page} onNavigate={onNavigate} />
+    case 'warehouse-handover': return <WarehouseHandover page={page} onNavigate={onNavigate} />
     case 'reports-orders': return <OrdersReport page={page} onNavigate={onNavigate} />
     case 'reports-handover': return <HandoverReport page={page} onNavigate={onNavigate} />
     case 'account-preferences': return <AccountPreferences page={page} onNavigate={onNavigate} />

@@ -114,7 +114,6 @@ function SapList({ onNavigate }: ManufacturingScreensProps) {
 function SapDetail({ onNavigate }: ManufacturingScreensProps) {
   return (
     <main className="dashboard-content screen-content">
-      <h2 className="screen-page-title">SAP requirement details</h2>
       <div className="detail-layout">
         <div className="detail-main">
           <Panel title="upcoming_orders.xlsx">
@@ -142,7 +141,6 @@ function SapDetail({ onNavigate }: ManufacturingScreensProps) {
 function OrderDetails({ onNavigate }: ManufacturingScreensProps) {
   return (
     <main className="dashboard-content screen-content">
-      <div className="screen-intro"><div><span className="eyebrow">MANUFACTURING ADMINISTRATION</span><h2>Upcoming order details</h2><p>Order-level review is awaiting a verified record from the SAP source.</p></div><span className="eyebrow">Static screen · No live action performed</span></div>
       <div className="detail-layout">
         <div className="detail-main">
           <Panel title="Selected order">
@@ -172,7 +170,7 @@ function ProductDetails({ onNavigate }: ManufacturingScreensProps) {
   const product = products[0]
   return (
     <main className="dashboard-content screen-content">
-      <div className="screen-intro product-intro"><div><h2>Product Details</h2><p>Master details, manufactured quantity history and current factory stock snapshot for Cream Cracker MC-BIS-001.</p><span className="footnote">18 Oct 2026 · 10:45 AM SLST · Admin Ayesha M.</span></div><div className="intro-actions"><button className="button" type="button" onClick={() => onNavigate('stocks')}>← Back to products</button><button className="button" type="button" onClick={() => onNavigate('production-entry')}>Record quantity</button><button className="button" type="button" onClick={() => onNavigate('adjustment')}>Adjust stock</button></div></div>
+      <div className="screen-intro"><div className="intro-actions"><button className="button" type="button" onClick={() => onNavigate('stocks')}>← Back to products</button><button className="button" type="button" onClick={() => onNavigate('production-entry')}>Record quantity</button><button className="button" type="button" onClick={() => onNavigate('adjustment')}>Adjust stock</button></div></div>
       <section className="product-summary screen-panel">
         <div className="product-summary-heading"><div><strong>MC-BIS-001 · Cream Cracker</strong><p>Product master record · Manufacturing Admin review queue · Illustrative data</p></div><span className="status-chip">Active</span><strong className="threshold-copy">Stock threshold 8000</strong></div>
         <div className="product-facts">{[['Product name', product.name, 'MC-BIS-001 · 200g'], ['Category', 'Biscuits', 'Standard factory SKU'], ['Packaging', '200g · 24 units / case', 'Standard retail pack'], ['Last production', '17 Oct 2026 · 10:30 AM', 'Batch MC-BIS-001-20261017']].map(([label, value, detail]) => <div key={label}><span>{label}</span><strong>{value}</strong><small>{detail}</small></div>)}</div>
@@ -219,7 +217,6 @@ function Reports({ onNavigate }: ManufacturingScreensProps) {
   }
   return (
     <main className="dashboard-content screen-content">
-      <div className="screen-intro"><div><span className="eyebrow">MANUFACTURING OPERATIONS / REPORTS · STOCK HISTORY</span><h2>Reports · Stock history</h2><p>Review manufacturer stock snapshots and trace the movements behind each balance.</p></div><span className="eyebrow">Illustrative · No live action performed</span></div>
       <Panel title="Manufacturing history">
         <div className="tab-list" role="tablist" aria-label="Report type">
           {reportTabs.map(({ label, page }) => (
@@ -252,7 +249,6 @@ function StockAdjustment({ onNavigate }: ManufacturingScreensProps) {
   const canConfirm = validDelta && Boolean(reason.trim()) && confirmed && after >= selectedProduct.reserved
   return (
     <main className="dashboard-content screen-content">
-      <div className="screen-intro"><div><span className="eyebrow">MANUFACTURING OPERATIONS / STOCK · ADJUSTMENT</span><h2>Stock adjustment</h2><p>Correct manufacturer-owned stock with a documented reason and an explicit confirmation.</p></div><span className="eyebrow">Illustrative · No live action performed</span></div>
       <div className="detail-layout adjustment-layout">
         <Panel title="Adjustment details">
           <form onSubmit={(event) => { event.preventDefault(); setMessage(canConfirm ? 'Adjustment confirmed in this illustrative screen.' : 'Review the adjustment values and safeguards before confirming.') }}>
@@ -297,7 +293,6 @@ function StockMovements({ onNavigate }: ManufacturingScreensProps) {
   }
   return (
     <main className="dashboard-content screen-content">
-      <h2 className="screen-page-title">Stock movements</h2>
       <Panel title="Detailed movement ledger">
         <div className="movement-filters">
           <label className="form-field">Search product, SKU or entry<input value={query} onChange={(event) => setQuery(event.target.value)} /></label>
@@ -324,7 +319,6 @@ function ProductionEntry({ onNavigate }: ManufacturingScreensProps) {
   const valid = Number.isInteger(quantityValue) && quantityValue > 0 && Boolean(batch.trim())
   return (
     <main className="dashboard-content screen-content">
-      <h2 className="screen-page-title">Record manufactured quantity</h2>
       <div className="detail-layout">
         <Panel title="Production entry">
           <form className="screen-form" onSubmit={(event) => { event.preventDefault(); onNavigate('stock-movements') }}>
@@ -375,7 +369,7 @@ function ShipmentSchedules(props: ManufacturingScreensProps) {
   const filtered = schedules.filter((row) => `${row.join(' ')} Scheduled`.toLowerCase().includes(query.toLowerCase()) && (productFilter === 'All products' || row[1].startsWith(productFilter)))
   return (
     <main className="dashboard-content screen-content">
-      <div className="screen-intro"><div><h2>Shipment Schedules</h2><p>18 Oct 2026 · 10:45 AM SLST</p></div><button className="button button-primary" type="button" onClick={() => onNavigate('shipment-create')}>➜ Create shipment schedule</button></div>
+      <div className="screen-intro"><button className="button button-primary" type="button" onClick={() => onNavigate('shipment-create')}>➜ Create shipment schedule</button></div>
       <section className="summary-grid">{[['Planned next pickup date', '20 Oct', 'Planned next manufacturer pickup'], ['Required quantity', '2,400', 'Units scheduled for next pickup'], ['Scheduled products', '5', 'Products included in next pickup'], ['Scheduled lines', '24', 'Manufacturer-owned schedule lines']].map(([label, value, description]) => <article className="summary-card" key={label}><h2>{label}</h2><p className="summary-value">{value}</p><p className="summary-description">{description}</p></article>)}</section>
       <Panel title="Manufacturer shipment schedules">
         <div className="table-toolbar"><label className="screen-search"><span aria-hidden="true">⌕</span><span className="visually-hidden">Search schedules</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search product, shop, or schedule ID" /></label><select aria-label="Pickup date"><option>Next pickup date</option><option>20 Oct</option><option>23 Oct</option></select><select aria-label="Filter by product" value={productFilter} onChange={(event) => setProductFilter(event.target.value)}><option>All products</option>{products.map((product) => <option key={product.id}>{product.name}</option>)}</select><button className="button" type="button" onClick={() => { setQuery(''); setProductFilter('All products') }}>☷ Filters</button></div>
@@ -393,7 +387,6 @@ function ShipmentCreate({ onNavigate, scheduleDraft, onScheduleDraftChange }: Ma
   const update = (key: keyof typeof scheduleDraft, value: string) => onScheduleDraftChange({ ...scheduleDraft, [key]: value })
   return (
     <main className="dashboard-content screen-content">
-      <div className="screen-intro"><div><span className="eyebrow">MANUFACTURING OPERATIONS / SCHEDULING · NEW</span><h2>Create shipment schedule</h2><p>Specify the required quantity and planned next pickup date for the shipment.</p></div><span className="eyebrow">Illustrative · No live action performed</span></div>
       <div className="detail-layout">
         <Panel title="Shipment schedule details">
           <form className="screen-form" onSubmit={(event) => { event.preventDefault(); onNavigate('shipment-review') }}>
@@ -420,7 +413,6 @@ function ShipmentReview({ onNavigate, scheduleDraft, selectedScheduleId }: Manuf
   const pickupDate = new Date(`${scheduleDraft.pickupDate}T00:00:00`).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
   return (
     <main className="dashboard-content screen-content">
-      <div className="screen-intro"><div><span className="eyebrow">MANUFACTURING ADMINISTRATION</span><h2>Review shipment schedule</h2><p>Check the required quantity and planned next pickup date before saving.</p></div><span className="eyebrow">Static screen · No live action performed</span></div>
       <div className="detail-layout">
         <div className="detail-main">
           <Panel title={`${selectedScheduleId} · Review before saving`}>
@@ -445,7 +437,6 @@ function ShipmentSaved({ onNavigate, scheduleDraft, selectedScheduleId }: Manufa
   const pickupDate = new Date(`${scheduleDraft.pickupDate}T00:00:00`).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })
   return (
     <main className="dashboard-content screen-content">
-      <div className="screen-intro"><div><span className="eyebrow">MANUFACTURING OPERATIONS / SCHEDULING · RECEIPT</span><h2>Schedule saved</h2><p>The next pickup date and required quantity are shown in this illustrative saved state.</p></div><span className="eyebrow">Illustrative · No live action performed</span></div>
       <div className="detail-layout">
         <Panel title={`${selectedScheduleId} · Scheduled`}>
           <div className="notice-box"><strong>Illustrative schedule saved</strong><p>No live schedule was created or changed.</p></div>
@@ -467,7 +458,6 @@ function ShipmentDetails({ onNavigate, scheduleDraft, selectedScheduleId }: Manu
   const product = products.find((item) => item.id === scheduleDraft.productId) ?? products[3]
   return (
     <main className="dashboard-content screen-content">
-      <h2 className="screen-page-title">Shipment schedule details</h2>
       <div className="detail-layout">
         <Panel title={selectedScheduleId}>
           <span className="status-chip">Scheduled</span>
@@ -494,7 +484,6 @@ function AgencyMaintenance({ onNavigate }: ManufacturingScreensProps) {
   if (showList) {
     return (
       <main className="dashboard-content screen-content">
-        <h2 className="screen-page-title">Agency Management</h2>
         <Panel title="Agency records"><div className="empty-state"><strong>No confirmed agencies available</strong><p>Agency records have not been supplied. No agency identity, contact details, or relationships are inferred.</p><button className="button" type="button" onClick={() => setShowList(false)}>Open read-only maintenance view</button></div></Panel>
         <div className="screen-actions"><button className="button" type="button" onClick={() => onNavigate('dashboard')}>Back to dashboard</button></div>
       </main>
@@ -502,7 +491,6 @@ function AgencyMaintenance({ onNavigate }: ManufacturingScreensProps) {
   }
   return (
     <main className="dashboard-content screen-content">
-      <h2 className="screen-page-title">Agency maintenance</h2>
       <div className="detail-layout">
         <Panel title="Agency information">
           <div className="agency-heading"><strong>Agency record</strong><span className="status-chip">Read only · No record selected</span></div>

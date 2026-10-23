@@ -22,7 +22,7 @@ function Dashboard({ onNavigate }: DashboardProps) {
     <div className="app-layout">
       <Sidebar activePage="dashboard" onNavigate={onNavigate} />
       <div className="main-column">
-        <Header />
+        <Header onNavigate={onNavigate} />
         <main className="dashboard-content">
           <section className="summary-grid" aria-label="Inventory summary">
             {summaryMetrics.map((metric) => (
