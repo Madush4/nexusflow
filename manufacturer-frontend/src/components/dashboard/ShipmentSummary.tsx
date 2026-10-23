@@ -1,10 +1,12 @@
 import type { Shipment } from '../../types/dashboard'
+import type { WorkspacePage } from '../layout/Sidebar'
 
 interface ShipmentSummaryProps {
   shipments: Shipment[]
+  onNavigate: (page: WorkspacePage) => void
 }
 
-function ShipmentSummary({ shipments }: ShipmentSummaryProps) {
+function ShipmentSummary({ shipments, onNavigate }: ShipmentSummaryProps) {
   return (
     <section className="panel shipment-panel">
       <div className="panel-heading">
@@ -27,10 +29,10 @@ function ShipmentSummary({ shipments }: ShipmentSummaryProps) {
         ))}
       </ul>
       <div className="shipment-actions">
-        <button className="button button-primary" type="button">
+        <button className="button button-primary" type="button" onClick={() => onNavigate('shipment-create')}>
           Create shipment schedule
         </button>
-        <button className="button" type="button">
+        <button className="button" type="button" onClick={() => onNavigate('shipment-schedules')}>
           Warehouse handover
         </button>
       </div>

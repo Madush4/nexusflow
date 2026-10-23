@@ -2,9 +2,10 @@ import type { AdminAction } from '../../types/dashboard'
 
 interface AdminActionsProps {
   actions: AdminAction[]
+  onAction?: (label: string) => void
 }
 
-function AdminActions({ actions }: AdminActionsProps) {
+function AdminActions({ actions, onAction }: AdminActionsProps) {
   return (
     <section className="panel admin-actions-panel">
       <div className="panel-heading">
@@ -19,6 +20,7 @@ function AdminActions({ actions }: AdminActionsProps) {
           <button
             className={`button${action.primary ? ' button-primary' : ''}`}
             type="button"
+            onClick={() => onAction?.(action.label)}
             key={action.label}
           >
             {action.label}
