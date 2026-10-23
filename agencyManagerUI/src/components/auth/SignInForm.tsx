@@ -19,6 +19,7 @@ function SignInForm() {
             placeholder="manager@nexus.lk"
             className="px-2 py-2 rounded-lg border "
             value={email}
+            onChange={(e)=> setEmail(e.target.value)}
             required
           />
 
@@ -30,6 +31,7 @@ function SignInForm() {
             placeholder="Enter your password here"
             className="px-2 py-2 rounded-lg border "
             value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </form>
@@ -40,23 +42,24 @@ function SignInForm() {
             <p className="text-sm text-slate-700">Remember Me</p>
           </label>
 
-          <p className="text-xs text-primary font-bold ">Forgot password ? </p>
+          <p className="text-xs text-primary font-bold  cursor-pointer">Forgot password ? </p>
         </section>
 
-        <button className=" bg-primary text-white text-xl font-medium py-2 rounded-full">
+        <button className=" bg-primary text-white text-xl font-medium py-2 rounded-full cursor-pointer">
           Sign In
         </button>
-
-        <p className="text-xs text-slate-700 font-light">
-          Protected access for authorized agency staff
-        </p>
-
-        <section className="flex gap-2">
-          <p className="text-xs text-slate-800 font-light">
-            Don't have an account ?
+        <div className="flex flex-col gap-2 items-center justify-center">
+          <p className="text-xs text-slate-700 font-light">
+            Protected access for authorized agency staff
           </p>
-          <p className="text-xs text-primary font-semibold">Sign Up</p>
-        </section>
+
+          <section className="flex gap-2">
+            <p className="text-xs text-slate-800 font-light">
+              Don't have an account ?
+            </p>
+            <p className="text-xs text-primary font-semibold cursor-pointer">Sign Up</p>
+          </section>
+        </div>
       </div>
     </div>
   );
